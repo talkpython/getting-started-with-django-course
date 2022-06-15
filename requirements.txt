@@ -1,0 +1,5 @@
+Django==4.0.2
+django-debug-toolbar==3.2.4
+django-grappelli==3.0.2
+djangorestframework==3.13.1
+Pillow==9.0.0

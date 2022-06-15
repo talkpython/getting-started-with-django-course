@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Alexandria - {{book.title}}{% endblock %}
+
+{% block content %}
+<h1>{{book.title}}</h1>
+<h3>By {{book.author.first_name}} {{book.author.last_name}}</h3>
+
+<p>{{pages.text|linebreaksbr}}</p>
+
+<br/>
+<br/>
+<a class="btn btn-dark" href="{% url 'review_book' book.id %}"
+  >Review Book</a>
+<a class="btn btn-dark" href="{% url 'book' book.id %}"
+  >View Details</a>
+
+{% endblock content %}

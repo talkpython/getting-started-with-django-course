@@ -1,0 +1,21 @@
+<html>
+<body>
+  <h1> {{heading}} </h1>
+
+  <p>
+    Welcome to the Alexandria sample page. Here are some books:
+
+    <ul>
+      {% for book in books %}
+        <li> 
+          <i>{{book.title|upper}}</i>, 
+          {{book.author}}
+          {% if book.recommended %}
+            <b>!!!</b>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </p>
+</body>
+</html>

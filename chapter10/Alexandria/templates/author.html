@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Alexandria - {{author.last_name}}{% endblock %}
+
+{% block content %}
+<h1>
+  Author: {{author.last_name}}{% if author.first_name %}, {{author.first_name}}{% endif %}
+</h1>
+
+<p>
+  {% if author.picture %}
+    <img src="{{author.picture.url}}" style="max-height:250px">
+  {% elif not author.picture and request.user.is_authenticated %}
+    <a class="btn btn-sm btn-dark" id="id_author_upload"
+      href="{% url 'upload_author_photo' author.id %}">Upload Author Photo</a>
+  {% endif %}
+
+  <br/>
+  <b>Birth Year:</b> {{author.birth_year}}<br/>
+</p>
+
+<h3>Books</h3>
+
+<p>
+  {% for book in author.book_set.all %}
+    <a href="{% url 'book' book_id=book.id %}">{{book.title}}</a> <br/>
+
+  {% empty %}
+    <i>No books available</i>
+  {% endfor %}
+</p>
+
+{% endblock content %}

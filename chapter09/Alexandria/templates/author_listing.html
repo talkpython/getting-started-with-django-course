@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Authors</h1>
+
+<p>
+  {% for author in authors %}
+    <b><a href="{% url 'author' author_id=author.id %}"
+      >{{author.last_name}}</a></b>{% if author.first_name %}, {{author.first_name}}{% endif %}
+    <br/>
+
+  {% empty %}
+    <i>There were no authors</i>
+  {% endfor %}
+
+</p>
+{% endblock content %}

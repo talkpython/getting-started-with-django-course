@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Alexandria - Review: {{book.title}}{% endblock %}
+
+{% block content %}
+<h2>Review: {{book.title}}</h2>
+
+{% if form.errors %}
+  <div class="alert alert-danger">Correct any errors before continuing.</div>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+
+  <div class="form-group">
+    {{ form.rating.label_tag }}
+    <input id="id_rating" name="rating" required="" type="number" min="1"
+        max="5" 
+        class="form-control {% if form.rating.errors %} is-invalid {% endif %}" 
+        {% if form.rating.value %}
+          value="{{ form.rating.value }}"
+        {% else %}
+          value=5
+        {% endif %}
+    >
+
+    {% if form.errors.rating %}
+      <small class="text-danger">{{ form.errors.rating }}</small>
+    {% endif %}
+  </div>
+  <div class="form-group">
+    {{ form.text.label_tag }}
+    <textarea id="id_text" name="text" required="" rows="5"
+        class="form-control {% if form.text.errors %} is-invalid {% endif %}" 
+        placeholder="Review text..."
+        >{% if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
+
+    {% if form.errors.text %}
+      <small class="text-danger">{{ form.errors.text }}</small>
+    {% endif %}
+  </div>
+
+  <button class="btn btn-dark" type="submit">Save</button>
+</form>
+
+{% endblock content %}

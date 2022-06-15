@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Alexandria - {{book.title}}{% endblock %}
+
+{% block content %}
+<h1>Book: {{book.title}}</h1>
+
+<h3>Author</h3>
+<p>
+  <b>First name:</b> {{book.author.first_name}}<br/>
+  <b>Last name:</b> {{book.author.last_name}}<br/>
+  <b>Birth Year:</b> {{book.author.birth_year}}<br/>
+</p>
+
+{% if book.pages %}
+    <a class="btn btn-dark" href="{% url 'pages' book.pages.id %}"
+      >Read Book</a> 
+{% endif %}
+
+<div class="row">
+  <div class="col">
+    <h3>Review</h3>
+  </div>
+  <div class="col text-right">
+    <a class="btn btn-dark" href="{% url 'review_book' book.id %}">Review</a> 
+  </div>
+</div>
+
+{% for review in book.review_set.all %}
+  <div class="card">
+    <div class="card-body {% cycle '' 'bg-light' %}">
+      <h5 class="card-title">{{review.user.username}} says {{review.rating}}/5</h5>
+      <br/>
+      <p class="card-text">{{review.text}}</p>
+    </div>
+  </div>
+  <br/>
+{% empty %}
+  <div class="alert alert-secondary">
+    No reviews yet!
+  </div>
+{% endfor %}
+
+
+{% endblock content %}

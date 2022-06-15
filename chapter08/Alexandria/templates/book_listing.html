@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Books</h1>
+
+<p>
+  {% for book in books %}
+    <b><a href="{% url 'book' book_id=book.id %}">{{book.title}}</a></b>; 
+    {{book.author.last_name}}{% if book.author.first_name %}, {{book.author.first_name}}{% endif %}.
+    <br/>
+
+  {% empty %}
+    <i>There were no books</i>
+  {% endfor %}
+
+</p>
+{% endblock content %}

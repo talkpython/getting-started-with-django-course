@@ -1,0 +1,32 @@
+main {
+    min-height: 87vh;
+}
+
+body, footer {
+    background-color: #fff;
+}
+
+.info-text {
+    color:#aaa;
+}
+
+footer {
+    background-color: #343a40;
+    padding: 25px;
+    color: #aaa;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.logo-img {
+    height:40px;
+    width:auto;
+}
